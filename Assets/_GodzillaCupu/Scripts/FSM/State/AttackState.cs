@@ -12,7 +12,12 @@ public class AttackState : BaseState
         // Logic for updating the attack state
     }
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnFixedUpdate(StateManager manager)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnCollisionEnter(Collision2D other)
     {
         // Logic for handling collisions in the attack state
     }
@@ -21,4 +26,6 @@ public class AttackState : BaseState
     {
         // Logic for exiting the attack state
     }
+
+
 }

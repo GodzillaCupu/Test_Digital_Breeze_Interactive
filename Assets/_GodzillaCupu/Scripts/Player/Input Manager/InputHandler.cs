@@ -5,11 +5,13 @@ public abstract class InputHandler : MonoBehaviour,IMovable
 {
     public InputActionAsset inputMap;
     private InputAction moveActions{ get; set; }
-    public InputAction jumpActions{ get; set; }
+    private InputAction jumpActions{ get; set; }
     [SerializeField] private Vector2 moveAmmout;
     [SerializeField] private bool isJumpingPressed;
 
     public virtual float Speed { get; set; }
+    public virtual float JumpHeight { get; set; }
+    public virtual bool CanJump { get; set; }
     public virtual bool CanMove { get; set; }
 
     public void EnableInput()
@@ -36,7 +38,9 @@ public abstract class InputHandler : MonoBehaviour,IMovable
 
     public bool IsJumping()
     {
-        isJumpingPressed = jumpActions.WasPerformedThisFrame();
+        // isJumpingPressed = jumpActions.WasPerformedThisFrame();
+        isJumpingPressed = jumpActions.WasPressedThisFrame();
+        Debug.Log($"Jump {isJumpingPressed}");
         return isJumpingPressed;
     }
 }

@@ -13,9 +13,14 @@ public class HurtState : BaseState
         // Logic for updating the hurt state
     }
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnCollisionEnter(Collision2D other)
     {
         // Logic for handling collisions in the hurt state
+    }
+
+    public override void OnFixedUpdate(StateManager manager)
+    {
+
     }
 
     public override void OnExit(StateManager manager)

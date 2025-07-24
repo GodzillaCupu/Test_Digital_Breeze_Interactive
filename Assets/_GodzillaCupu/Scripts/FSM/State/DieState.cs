@@ -12,13 +12,21 @@ public class DieState : BaseState
         // Logic for updating the die state
     }
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnFixedUpdate(StateManager manager)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnCollisionEnter(Collision2D other)
     {
         // Logic for handling collisions in the die state
+        throw new System.NotImplementedException();
     }
 
     public override void OnExit(StateManager manager)
     {
         // Logic for exiting the die state
     }
+
+
 }

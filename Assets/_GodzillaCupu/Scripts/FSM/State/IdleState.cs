@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
-    PlayerController controller;
-    AnimationsController animations;
-
     public override void OnEnter(StateManager manager)
     {
         // Logic for entering the idle state
-        controller = manager.gameObject.GetComponent<PlayerController>();
-        animations = controller.Animations;
     }
 
     public override void OnUpdate(StateManager manager)
     {
         // Logic for updating the idle state
-        animations.PlayAnimations("Idle");
     }
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnFixedUpdate(StateManager manager)
+    {
+
+    }
+
+    public override void OnCollisionEnter(Collision2D other)
     {
         // Logic for handling collisions in the idle state
     }
