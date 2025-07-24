@@ -6,10 +6,8 @@ public class PlayerController : InputHandler
 {
     [SerializeField] private AnimationsController animations;
     [SerializeField] private Rigidbody2D rb;
-    
-    public StateManager stateManager;
 
-    
+    public StateManager stateManager;
 
     public AnimationsController Animations { get => animations; set => animations = value; }
     public Rigidbody2D Rigidbody { get => rb; set => rb = value; }
@@ -60,5 +58,14 @@ public class PlayerController : InputHandler
     {
         if (IsJumping())
             stateManager.ChangeState(stateManager._jumpState);
+    }
+
+    private bool CheckDead()
+    {
+        bool _isDead = Health == 0 ? true : false;
+        if (_isDead)
+            stateManager.ChangeState(stateManager._dieState);
+
+        return _isDead;
     }
 }

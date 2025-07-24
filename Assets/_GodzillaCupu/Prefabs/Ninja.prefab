@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1973779070629255941
+--- !u!1 &2769308654240586617
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2158589368081094624}
-  - component: {fileID: 5591602029478628334}
-  - component: {fileID: 3453698606866449695}
+  - component: {fileID: 8235562149588220439}
+  - component: {fileID: 1324013754386389340}
+  - component: {fileID: 4403773812729199216}
+  - component: {fileID: 4498237815592561053}
+  - component: {fileID: 4508858167590265989}
   m_Layer: 0
-  m_Name: Physics
+  m_Name: Ninja
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2158589368081094624
+--- !u!4 &8235562149588220439
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973779070629255941}
+  m_GameObject: {fileID: 2769308654240586617}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8235562149588220439}
+  m_Children:
+  - {fileID: 4618113820293056282}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &5591602029478628334
+--- !u!50 &1324013754386389340
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973779070629255941}
+  m_GameObject: {fileID: 2769308654240586617}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -60,13 +63,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3453698606866449695
+--- !u!61 &4403773812729199216
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973779070629255941}
+  m_GameObject: {fileID: 2769308654240586617}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -106,39 +109,41 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.88, y: 4.37}
   m_EdgeRadius: 0
---- !u!1 &2769308654240586617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8235562149588220439}
-  m_Layer: 0
-  m_Name: Ninja
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8235562149588220439
-Transform:
+--- !u!114 &4498237815592561053
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2769308654240586617}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4618113820293056282}
-  - {fileID: 2158589368081094624}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ea22cf5cc943f47a3e0c309231fd20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputMap: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  health: 0
+  speed: 10
+  jumpHeight: 5
+  canJump: 1
+  canMove: 1
+  moveAmmout: {x: 0, y: 0}
+  isJumpingPressed: 0
+  animations: {fileID: 1475070787990786370}
+  rb: {fileID: 1324013754386389340}
+  stateManager: {fileID: 4508858167590265989}
+--- !u!114 &4508858167590265989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769308654240586617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a779c725b6d1464b817e73120da5722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8186210481094781270
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +155,7 @@ GameObject:
   - component: {fileID: 4618113820293056282}
   - component: {fileID: 1570481876584579652}
   - component: {fileID: 6544679650254690336}
+  - component: {fileID: 1475070787990786370}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Player
@@ -249,3 +255,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1475070787990786370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186210481094781270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c64049f6887fdf4ba348a72bdf51632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: c1cf2c07be8db2c4e99dae0722014ae6, type: 2}
+  animator: {fileID: 1570481876584579652}
+  previousAnimations:
+    ID: 
+    AnimatorName: 
+  currentAnimations:
+    ID: 
+    AnimatorName: 

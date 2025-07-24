@@ -5,7 +5,8 @@ public class HurtState : BaseState
     public override void OnEnter(StateManager manager)
     {
         // Logic for entering the hurt state
-        
+        //Set Animation Fade In 
+        //Decrease health bar
     }
 
     public override void OnUpdate(StateManager manager)
@@ -25,6 +26,6 @@ public class HurtState : BaseState
 
     public override void OnExit(StateManager manager)
     {
-        
+        //SetAnimations Fade Out
     }
 }

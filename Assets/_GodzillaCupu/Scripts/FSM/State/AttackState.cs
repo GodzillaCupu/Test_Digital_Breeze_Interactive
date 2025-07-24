@@ -5,6 +5,7 @@ public class AttackState : BaseState
     public override void OnEnter(StateManager manager)
     {
         // Logic for entering the attack state
+        
     }
 
     public override void OnUpdate(StateManager manager)

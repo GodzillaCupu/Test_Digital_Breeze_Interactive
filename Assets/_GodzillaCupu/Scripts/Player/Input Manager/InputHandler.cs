@@ -7,6 +7,7 @@ public abstract class InputHandler : MonoBehaviour,IMovable
     private InputAction moveActions{ get; set; }
     private InputAction jumpActions{ get; set; }
 
+    [SerializeField] private float health;
     [SerializeField] private float speed;
     [SerializeField] private float jumpHeight;
     [SerializeField] private bool canJump = false;
@@ -16,6 +17,7 @@ public abstract class InputHandler : MonoBehaviour,IMovable
     [SerializeField] private Vector2 moveAmmout;
     [SerializeField] private bool isJumpingPressed;
 
+    public virtual float Health { get => health; set => speed = health; }
     public virtual float Speed { get => speed; set => speed = value; }
     public virtual float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
     public virtual bool CanJump { get => canJump; set =>canJump = value ; }
