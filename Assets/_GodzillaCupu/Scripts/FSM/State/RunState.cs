@@ -12,7 +12,7 @@ public class RunState : BaseState
     {
         // Logic for entering the run state
         controller = manager.gameObject.GetComponent<PlayerController>();
-        animation = controller.Animations;
+        animation = controller.Animation;
         rb = controller.Rigidbody;
 
         renderer = animation.gameObject.GetComponent<SpriteRenderer>();
@@ -35,7 +35,7 @@ public class RunState : BaseState
         switch (controller.GetMovementInput().x)
         {
             case 0:
-                controller.stateManager.ChangeState(controller.stateManager._idleState);
+                controller.StateManager.ChangeState(controller.StateManager._idleState);
                 break;
 
             case 1:
@@ -51,7 +51,7 @@ public class RunState : BaseState
                 break;
 
             default:
-                controller.stateManager.ChangeState(controller.stateManager._idleState);
+                controller.StateManager.ChangeState(controller.StateManager._idleState);
                 break;
         }
     }

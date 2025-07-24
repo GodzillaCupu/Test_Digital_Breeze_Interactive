@@ -10,7 +10,7 @@ public class JumpState : BaseState
     {
         // Logic for entering the jump state
         controller = manager.gameObject.GetComponent<PlayerController>();
-        animation = controller.Animations;
+        animation = controller.Animation;
         rb = controller.Rigidbody;
 
         if (controller.CanJump) Jump();

@@ -1,10 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
-public class DieState : BaseState 
+public class DieState : BaseState
 {
+    StateManager _manager;
+    AnimationsController _animation;
+    float _fadeDuration;
+
     public override void OnEnter(StateManager manager)
     {
         // Logic for entering the die state
+        _manager = manager;
+        _animation = _manager.gameObject.GetComponent<BaseController>().Animation;
+
+        _animation.PlayAnimations("Die");
     }
 
     public override void OnUpdate(StateManager manager)
@@ -28,5 +37,8 @@ public class DieState : BaseState
         // Logic for exiting the die state
     }
 
-
+    IEnumerator CountDownFadeOut()
+    {
+        yield return new WaitForSeconds(_fadeDuration);
+    }
 }

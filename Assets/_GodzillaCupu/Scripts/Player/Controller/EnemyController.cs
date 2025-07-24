@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, BaseController
 {
     [SerializeField] private AnimationsController animations;
+    [SerializeField] private StateManager stateManager;
     [SerializeField] private Rigidbody2D rb;
 
-    public StateManager stateManager;
-
-    public AnimationsController Animations { get => animations; set => animations = value; }
+    public AnimationsController Animation { get => animations; set => animations = value; }
     public Rigidbody2D Rigidbody { get => rb; set => rb = value; }
+    public StateManager StateManager { get => stateManager; set => stateManager = value; }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,5 +18,4 @@ public class EnemyController : MonoBehaviour
 
         stateManager.ChangeState(stateManager._dieState);
     }
-
 }

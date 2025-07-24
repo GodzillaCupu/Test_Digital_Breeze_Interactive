@@ -9,7 +9,7 @@ public class IdleState : BaseState
     {
         // Logic for entering the idle state
         controller = manager.gameObject.GetComponent<PlayerController>();
-        animations = controller.Animations;
+        animations = controller.Animation;
         animations.PlayAnimations("Idle");
     }
 
