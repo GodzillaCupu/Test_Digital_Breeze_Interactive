@@ -1,27 +1,31 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class InputHandler : MonoBehaviour,IMovable
+public abstract class InputHandler : MonoBehaviour, IMovable
 {
+    [Header("Input System")]
     public InputActionAsset inputMap;
-    private InputAction moveActions{ get; set; }
-    private InputAction jumpActions{ get; set; }
+    private InputAction moveActions { get; set; }
+    private InputAction jumpActions { get; set; }
+    private InputAction attackActions { get; set; }
 
+    [Header("Input Paramater")]
+    private Vector2 moveAmmout;
+    private bool isJumpingPressed;
+    private bool isAttacking;
+
+    
     [SerializeField] private float health;
     [SerializeField] private float speed;
     [SerializeField] private float jumpHeight;
     [SerializeField] private bool canJump = false;
     [SerializeField] private bool canMove = true;
 
-    [Header("Input")]
-    [SerializeField] private Vector2 moveAmmout;
-    [SerializeField] private bool isJumpingPressed;
-
-    public virtual float Health { get => health; set => speed = health; }
+    public virtual float Health { get => health; set => health = value; }
     public virtual float Speed { get => speed; set => speed = value; }
     public virtual float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
-    public virtual bool CanJump { get => canJump; set =>canJump = value ; }
-    public virtual bool CanMove { get => canMove; set =>canMove = value ; }
+    public virtual bool CanJump { get => canJump; set => canJump = value; }
+    public virtual bool CanMove { get => canMove; set => canMove = value; }
 
     public void EnableInput()
     {
@@ -37,6 +41,7 @@ public abstract class InputHandler : MonoBehaviour,IMovable
     {
         moveActions = InputSystem.actions.FindAction("Move");
         jumpActions = InputSystem.actions.FindAction("Jump");
+        attackActions = InputSystem.actions.FindAction("Attack");
     }
 
     public Vector2 GetMovementInput()
@@ -47,8 +52,13 @@ public abstract class InputHandler : MonoBehaviour,IMovable
 
     public bool IsJumping()
     {
-        // isJumpingPressed = jumpActions.WasPerformedThisFrame();
         isJumpingPressed = jumpActions.WasPressedThisFrame() || jumpActions.WasPerformedThisFrame() ? true : false;
         return isJumpingPressed;
+    }
+
+    public bool IsAttacking()
+    {
+        isAttacking = attackActions.WasPressedThisFrame() || attackActions.WasPerformedThisFrame() ? true : false;
+        return isAttacking;
     }
 }

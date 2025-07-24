@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface BaseController
+public interface IController
 {
     StateManager StateManager { get; set; }
     Rigidbody2D Rigidbody { get; set; }

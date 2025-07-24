@@ -29,6 +29,15 @@ public class RunState : BaseState
         // Logic for fixed updating the run state
     }
 
+    public override void OnCollisionEnter(Collision2D other)
+    {
+        // Logic for handling collisions in the run state
+    }
+
+    public override void OnExit(StateManager manager)
+    {
+        // Logic for exiting the run state
+    }
     private void Walk()
     {
         switch (controller.GetMovementInput().x)
@@ -53,15 +62,5 @@ public class RunState : BaseState
                 controller.StateManager.ChangeState(controller.StateManager._idleState);
                 break;
         }
-    }
-
-    public override void OnCollisionEnter(Collision2D other)
-    {
-        // Logic for handling collisions in the run state
-    }
-
-    public override void OnExit(StateManager manager)
-    {
-        // Logic for exiting the run state
     }
 }

@@ -180,7 +180,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -208,9 +208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2282c437961a59d40a48b55f5fdbe5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedThrow: 15
-  damage: 4
+  speedThrow: 10
+  damage: 50
   canThrow: 1
+  Id: Kunai
 --- !u!1 &6664048981534480511
 GameObject:
   m_ObjectHideFlags: 0

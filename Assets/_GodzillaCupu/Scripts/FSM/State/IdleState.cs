@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
-    PlayerController controller;
+    IController controller;
     AnimationsController animations;
 
     public override void OnEnter(StateManager manager)
     {
         // Logic for entering the idle state
-        controller = manager.gameObject.GetComponent<PlayerController>();
+        controller = manager.gameObject.GetComponent<IController>();
         animations = controller.Animation;
         animations.PlayAnimations("Idle");
     }

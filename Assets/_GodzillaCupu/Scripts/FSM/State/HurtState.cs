@@ -1,12 +1,24 @@
+using System.Collections;
 using UnityEngine;
-
 public class HurtState : BaseState
 {
+    SpriteRenderer targetRenderer;
+    AnimationsController animation;
+    IController controller;
+    float fadeDurations = 5f;
     public override void OnEnter(StateManager manager)
     {
         // Logic for entering the hurt state
+        controller = manager.gameObject.GetComponent<IController>();
+        animation = controller.Animation;
+
+        targetRenderer = animation.gameObject.GetComponent<SpriteRenderer>();
+
         //Set Animation Fade In 
-        //Decrease health bar
+        LeanTween.value(targetRenderer.gameObject, Color.red, Color.white, fadeDurations).
+        setOnComplete(
+            () => OnExit(manager)
+        );
     }
 
     public override void OnUpdate(StateManager manager)
@@ -27,5 +39,11 @@ public class HurtState : BaseState
     public override void OnExit(StateManager manager)
     {
         //SetAnimations Fade Out
+    }
+
+    IEnumerator HurtingAnimations(StateManager manager)
+    {
+        yield return new WaitForSeconds(fadeDurations);
+        OnExit(manager);
     }
 }
