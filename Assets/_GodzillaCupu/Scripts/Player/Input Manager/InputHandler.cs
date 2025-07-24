@@ -6,13 +6,20 @@ public abstract class InputHandler : MonoBehaviour,IMovable
     public InputActionAsset inputMap;
     private InputAction moveActions{ get; set; }
     private InputAction jumpActions{ get; set; }
+
+    [SerializeField] private float speed;
+    [SerializeField] private float jumpHeight;
+    [SerializeField] private bool canJump = false;
+    [SerializeField] private bool canMove = true;
+
+    [Header("Input")]
     [SerializeField] private Vector2 moveAmmout;
     [SerializeField] private bool isJumpingPressed;
 
-    public virtual float Speed { get; set; }
-    public virtual float JumpHeight { get; set; }
-    public virtual bool CanJump { get; set; }
-    public virtual bool CanMove { get; set; }
+    public virtual float Speed { get => speed; set => speed = value; }
+    public virtual float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
+    public virtual bool CanJump { get => canJump; set =>canJump = value ; }
+    public virtual bool CanMove { get => canMove; set =>canMove = value ; }
 
     public void EnableInput()
     {
