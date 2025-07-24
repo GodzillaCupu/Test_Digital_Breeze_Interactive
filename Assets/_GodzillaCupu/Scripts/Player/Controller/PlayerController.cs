@@ -32,13 +32,8 @@ public class PlayerController : InputHandler
     {
         if (!canMove) return;
 
-        if (GetMovementInput() != Vector2.zero)
-            stateManager.ChangeState(stateManager._runState);
-        else
-            stateManager.ChangeState(stateManager._idleState);
-
-        if (IsJumping())
-            stateManager.ChangeState(stateManager._jumpState);
+        CheckCanWalk();
+        CheckCanJumping();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -55,5 +50,21 @@ public class PlayerController : InputHandler
     private void OnDisable()
     {
         base.DisableInput();
+    }
+
+    private void CheckCanWalk()
+    {
+        if (GetMovementInput() == Vector2.zero)
+        {
+            stateManager.ChangeState(stateManager._idleState);
+            return;
+        }
+        stateManager.ChangeState(stateManager._runState);
+    }
+
+    private void CheckCanJumping()
+    {
+        if (IsJumping())
+            stateManager.ChangeState(stateManager._jumpState);
     }
 }
