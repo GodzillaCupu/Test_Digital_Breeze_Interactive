@@ -31,8 +31,9 @@ public class StateManager : MonoBehaviour
         if (previousState == null) return;
 
         previousState.OnExit(this);
+
+        currentState = NextState;
         currentState.OnEnter(this);
 
-        currentState = newState;
     }
 }
