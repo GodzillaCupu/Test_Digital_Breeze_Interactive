@@ -22,19 +22,20 @@ public class StateManager : MonoBehaviour
     private void Update()
     {
         if (currentState == null) return;
-
+        Debug.Log($"Current State is {currentState}");
         currentState.OnUpdate(this);
     }
+
     private void FixedUpdate()
     {
         if (currentState == null) return;
         currentState.OnFixedUpdate(this);
     }
 
-    private void OCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other) 
     {
         if (currentState == null) return;
-        currentState.OnCollisionEnter(collision);
+        currentState.OnCollisionEnter(other);
     }
 
     public void ChangeState(BaseState newState)

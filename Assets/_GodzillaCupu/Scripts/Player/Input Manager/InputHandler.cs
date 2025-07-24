@@ -39,8 +39,7 @@ public abstract class InputHandler : MonoBehaviour,IMovable
     public bool IsJumping()
     {
         // isJumpingPressed = jumpActions.WasPerformedThisFrame();
-        isJumpingPressed = jumpActions.WasPressedThisFrame();
-        Debug.Log($"Jump {isJumpingPressed}");
+        isJumpingPressed = jumpActions.WasPressedThisFrame() || jumpActions.WasPerformedThisFrame() ? true : false;
         return isJumpingPressed;
     }
 }

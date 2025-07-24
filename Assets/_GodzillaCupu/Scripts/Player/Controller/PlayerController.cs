@@ -34,10 +34,17 @@ public class PlayerController : InputHandler
 
         if (GetMovementInput() != Vector2.zero)
             stateManager.ChangeState(stateManager._runState);
+        else
+            stateManager.ChangeState(stateManager._idleState);
+
         if (IsJumping())
-        {
             stateManager.ChangeState(stateManager._jumpState);
-        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enviroment")
+            CanJump = true;
     }
 
     private void OnEnable()

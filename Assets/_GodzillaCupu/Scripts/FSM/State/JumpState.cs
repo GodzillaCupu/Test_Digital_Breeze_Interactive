@@ -12,34 +12,31 @@ public class JumpState : BaseState
         controller = manager.gameObject.GetComponent<PlayerController>();
         animation = controller.Animations;
         rb = controller.Rigidbody;
+
+        if (controller.CanJump) Jump();
+    }
+
+    private void Jump()
+    {
+        controller.CanJump = false;
+        animation.PlayAnimations("Jumping");
+        rb.AddForce(rb.transform.up * controller.JumpHeight, ForceMode2D.Impulse);
     }
 
     public override void OnUpdate(StateManager manager)
     {
         // Logic for updating the jump state
-        
-        
+
     }
 
     public override void OnFixedUpdate(StateManager manager)
     {
         // Logic for Fixed Updating the jump state
-        if (controller.IsJumping() && controller.CanJump)
-        {
-            controller.isJumping = true;
-            animation.PlayAnimations("Jumping");
-            rb.AddForce(rb.transform.up * controller.JumpHeight, ForceMode2D.Impulse);
-        }
     }
 
     public override void OnCollisionEnter(Collision2D other)
     {
         // Logic for handling collisions in the jump state
-        if (other.gameObject.tag == "Enviroment")
-        {
-            controller.isJumping = false;
-            controller.stateManager.ChangeState(controller.stateManager._idleState);
-        }
     }
 
     public override void OnExit(StateManager manager)

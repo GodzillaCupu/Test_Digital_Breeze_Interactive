@@ -1,3 +1,4 @@
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class RunState : BaseState
@@ -15,6 +16,7 @@ public class RunState : BaseState
         rb = controller.Rigidbody;
 
         renderer = animation.gameObject.GetComponent<SpriteRenderer>();
+        Walk();
     }
 
     public override void OnUpdate(StateManager manager)
@@ -26,6 +28,10 @@ public class RunState : BaseState
     public override void OnFixedUpdate(StateManager manager)
     {
         // Logic for fixed updating the run state
+    }
+
+    private void Walk()
+    {
         switch (controller.GetMovementInput().x)
         {
             case 0:
@@ -34,13 +40,13 @@ public class RunState : BaseState
 
             case 1:
                 renderer.flipX = false;
-                rb.MovePosition(rb.position + new Vector2(1, 0) * controller.Speed * Time.deltaTime);
+                rb.MovePosition(rb.position + new Vector2(1 * controller.Speed, rb.position.y - rb.gravityScale) * Time.deltaTime);
                 animation.PlayAnimations("Running");
                 break;
 
             case -1:
                 renderer.flipX = true;
-                rb.MovePosition(rb.position + new Vector2(-1, 0) * controller.Speed * Time.deltaTime);
+                rb.MovePosition(rb.position + new Vector2(-1 * controller.Speed, rb.position.y - rb.gravityScale) * Time.deltaTime);
                 animation.PlayAnimations("Running");
                 break;
 
