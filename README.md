@@ -1,5 +1,5 @@
 
-# VFX Trainning
+# Digital Breeze Interactive
 
 This Repository is project evidance for Digital Breeze Interactive entrance test.
 
@@ -26,6 +26,7 @@ Finate State Manager yang mengatur animasi, movement sesuai dengan state yang te
 
 
 [![Live Test](https://img.shields.io/badge/Live_Test-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://godzillacupu.github.io/Test_Digital_Breeze_Interactive/)
+Untuk Project Silahkan Di Download  pada bagian Release
 
 ## Authors
 
