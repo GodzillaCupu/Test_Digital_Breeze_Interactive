@@ -37,8 +37,6 @@ public class PlayerController : InputHandler, IController, IAttack
     // Update is called once per frame
     void Update()
     {
-        if (!CanMove) return;
-
         CheckCanWalk();
         CheckCanJumping();
         OnAttack();
