@@ -36,5 +36,5 @@ Untuk Project Silahkan Di Download  pada bagian Release atau pada link repositor
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/GodzillaCupu)
+- [@Ery_Prasetyo](https://www.github.com/GodzillaCupu)
 
