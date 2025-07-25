@@ -29,4 +29,4 @@ Finate State Manager yang mengatur animasi, movement sesuai dengan state yang te
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/GodzillaCupu)
+- [@Ery_Prasetyo](https://www.github.com/GodzillaCupu)
