@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_GodzillaCupu/2D/Scenes/Enviroment 1.unity
+    path: Assets/_GodzillaCupu/Scenes/Demo.unity
     guid: 2740a0da194b0fe4fba1b861cd4512ef
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 6aa8159c80158c84b8f0285462c10cd9, type: 2}

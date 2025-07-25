@@ -3,30 +3,30 @@ using UnityEngine;
 
 public class DieState : BaseState
 {
-    StateManager _manager;
+    GameObject targetObject;
     AnimationsController _animation;
     float _fadeDuration = 3;
 
     public override void OnEnter(StateManager manager)
     {
         // Logic for entering the die state
-        _manager = manager;
-        _animation = _manager.gameObject.GetComponent<IController>().Animation;
+        targetObject = manager.gameObject;
+        _animation = targetObject.GetComponent<IController>().Animation;
 
-        _animation.PlayAnimations("Die");
-        DisableObject(_manager.gameObject);
+        DisableObject(targetObject);
     }
 
     public override void OnUpdate(StateManager manager)
     {
         // Logic for updating the die state
+        _animation.PlayAnimations("Die");
     }
 
     public override void OnFixedUpdate(StateManager manager)
     {
     }
 
-    public override void OnCollisionEnter(Collision2D other)
+    public override void OnCollisionEnter(StateManager manager, Collision2D other)
     {
         // Logic for handling collisions in the die state
     }
@@ -34,6 +34,8 @@ public class DieState : BaseState
     public override void OnExit(StateManager manager)
     {
         // Logic for exiting the die state
+        targetObject = null;
+        _animation = null;
     }
 
     public void DisableObject(GameObject targetObject)

@@ -6,7 +6,6 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
 {
     [SerializeField] private float speedThrow;
     [SerializeField] private float damage;
-
     [SerializeField] private bool canThrow;
 
     public bool CanThrow { get => canThrow; set => canThrow = value; }

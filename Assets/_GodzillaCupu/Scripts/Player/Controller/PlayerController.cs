@@ -2,6 +2,7 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerController : InputHandler, IController, IAttack
@@ -24,6 +25,8 @@ public class PlayerController : InputHandler, IController, IAttack
     public GameObject Bullet { get => bullet; set => bullet = value; }
     public Transform SpawnBulletPostions { get => spawnBulletPostions; set => spawnBulletPostions = value; }
 
+    [SerializeField] private UnityEvent triggerEvent;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,8 +39,6 @@ public class PlayerController : InputHandler, IController, IAttack
     {
         if (!CanMove) return;
 
-        if (stateManager.CurrentState == StateManager._dieState) return;
-
         CheckCanWalk();
         CheckCanJumping();
         OnAttack();
@@ -45,15 +46,18 @@ public class PlayerController : InputHandler, IController, IAttack
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enviroment")
-            CanJump = true;
-
         if (collision.gameObject.tag == "Bullet")
         {
             GameObject _bullet = collision.gameObject;
             UpdateHealth(_bullet.GetComponent<BaseWeapon>().Damage);
-            if (CheckDead()) return;
             stateManager.ChangeState(stateManager._hurtState);
+            if (CheckDead()) return;
+        }
+
+        if (collision.gameObject.tag == "Enviroment")
+        {
+            CanJump = true;
+            CheckCanWalk();
         }
     }
 
@@ -69,17 +73,22 @@ public class PlayerController : InputHandler, IController, IAttack
 
     private void CheckCanWalk()
     {
-        if (GetMovementInput() == Vector2.zero)
-        {
-            StateManager.ChangeState(StateManager._idleState);
-            return;
-        }
-        StateManager.ChangeState(StateManager._runState);
+
+        Vector2 dir = GetMovementInput();
+        if (dir.x != 0)
+            stateManager.ChangeState(stateManager._runState);
+        else
+            SetIdle();
+    }
+
+    private void SetIdle()
+    {
+        stateManager.ChangeState(stateManager._idleState);
     }
 
     private void CheckCanJumping()
     {
-        if (IsJumping())
+        if (IsJumping() && CanJump)
             StateManager.ChangeState(StateManager._jumpState);
     }
 
@@ -87,7 +96,11 @@ public class PlayerController : InputHandler, IController, IAttack
     {
         bool _isDead = Health == 0 ? true : false;
         if (_isDead)
+        {
             StateManager.ChangeState(StateManager._dieState);
+            triggerEvent.Invoke();
+            CanMove = false;
+        }
 
         return _isDead;
     }

@@ -15,7 +15,9 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = _idleState;
+        if(currentState == null)
+            currentState = _idleState;
+
         currentState.OnEnter(this);
     }
 
@@ -35,7 +37,7 @@ public class StateManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) 
     {
         if (currentState == null) return;
-        currentState.OnCollisionEnter(other);
+        currentState.OnCollisionEnter(this, other);
     }
 
     public void ChangeState(BaseState newState)
@@ -44,10 +46,11 @@ public class StateManager : MonoBehaviour
         BaseState NextState = newState;
 
         if (previousState == null) return;
-
+        if (previousState == NextState) return;
+        
         previousState.OnExit(this);
+        NextState.OnEnter(this);
 
         currentState = NextState;
-        currentState.OnEnter(this);
     }
 }

@@ -20,10 +20,8 @@ public class IdleState : BaseState
 
     public override void OnFixedUpdate(StateManager manager)
     {
-
     }
-
-    public override void OnCollisionEnter(Collision2D other)
+    public override void OnCollisionEnter(StateManager manager, Collision2D other)
     {
         // Logic for handling collisions in the idle state
     }
@@ -31,5 +29,7 @@ public class IdleState : BaseState
     public override void OnExit(StateManager manager)
     {
         // Logic for exiting the idle state
+        controller = null;
+        animations = null;
     }
 }

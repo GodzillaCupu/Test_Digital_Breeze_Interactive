@@ -30,7 +30,7 @@ public class AnimationsController : MonoBehaviour
     {
         previousAnimations = currentAnimations;
 
-        AnimationsName nextAnimations = data._name.Find(x => x.ID == _targetName);
+        AnimationsName nextAnimations = _data._name.Find(x => x.ID == _targetName);
 
         currentAnimations = nextAnimations;
         return currentAnimations.AnimatorName;

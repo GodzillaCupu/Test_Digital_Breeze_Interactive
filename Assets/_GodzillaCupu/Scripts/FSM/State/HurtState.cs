@@ -15,10 +15,7 @@ public class HurtState : BaseState
         targetRenderer = animation.gameObject.GetComponent<SpriteRenderer>();
 
         //Set Animation Fade In 
-        LeanTween.value(targetRenderer.gameObject, Color.red, Color.white, fadeDurations).
-        setOnComplete(
-            () => OnExit(manager)
-        );
+        LeanTween.value(targetRenderer.gameObject, Color.red, Color.white, fadeDurations);
     }
 
     public override void OnUpdate(StateManager manager)
@@ -26,7 +23,7 @@ public class HurtState : BaseState
         // Logic for updating the hurt state
     }
 
-    public override void OnCollisionEnter(Collision2D other)
+    public override void OnCollisionEnter(StateManager manager, Collision2D other)
     {
         // Logic for handling collisions in the hurt state
     }
@@ -38,12 +35,8 @@ public class HurtState : BaseState
 
     public override void OnExit(StateManager manager)
     {
-        //SetAnimations Fade Out
-    }
-
-    IEnumerator HurtingAnimations(StateManager manager)
-    {
-        yield return new WaitForSeconds(fadeDurations);
-        OnExit(manager);
+        targetRenderer = null;
+        animation = null;
+        controller = null;
     }
 }

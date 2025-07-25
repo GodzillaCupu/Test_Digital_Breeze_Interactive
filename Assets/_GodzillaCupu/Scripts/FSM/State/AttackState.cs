@@ -1,12 +1,13 @@
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class AttackState : BaseState
 {
-    GameObject mainObject;
     IAttack _attackController;
+    GameObject mainObject;
     GameObject bulletObject;
+    GameObject rendererObject;
     Transform spawnPoint;
+    float throwSpeed;
 
     AnimationsController animation;
     public override void OnEnter(StateManager manager)
@@ -19,13 +20,13 @@ public class AttackState : BaseState
 
         IController controller = mainObject.GetComponent<IController>();
         animation = controller.Animation;
-
-        Attack();
+        rendererObject = animation.gameObject;
     }
 
     public override void OnUpdate(StateManager manager)
     {
         // Logic for updating the attack state
+        if (_attackController.CanAttack) Attack();
     }
 
     public override void OnFixedUpdate(StateManager manager)
@@ -33,7 +34,7 @@ public class AttackState : BaseState
 
     }
 
-    public override void OnCollisionEnter(Collision2D other)
+    public override void OnCollisionEnter(StateManager manager, Collision2D other)
     {
         // Logic for handling collisions in the attack state
     }
@@ -41,13 +42,31 @@ public class AttackState : BaseState
     public override void OnExit(StateManager manager)
     {
         // Logic for exiting the attack state
+        _attackController.CanAttack = true;
+        bulletObject = null;
+        mainObject = null;
+        _attackController = null;
+        spawnPoint = null;
+        animation = null;
+        rendererObject = null;
     }
 
     public void Attack()
     {
         // if (bulletObject == null) return;
+        Quaternion _flipQuarternion = Quaternion.Euler(0, 180, 0);
+        bool isFlip = rendererObject.transform.rotation == _flipQuarternion ?
+                true : false;
+        GameObject _bullet;
 
-        // GameObject _bullet = GameObject.Instantiate(bulletObject, spawnPoint.position, mainObject.transform.rotation);
+        if (bulletObject == null) return;
+        if (isFlip)
+            _bullet = GameObject.Instantiate(bulletObject, spawnPoint.position, mainObject.transform.rotation);
+        else
+            _bullet = GameObject.Instantiate(bulletObject, spawnPoint.position, _flipQuarternion);
+           
+        throwSpeed = _bullet.GetComponent<BaseWeapon>().SpeedThrow;
+        _attackController.CanAttack = false;
         animation.PlayAnimations("Attack");
     }
 }
