@@ -26,10 +26,12 @@ Finate State Manager yang mengatur animasi, movement sesuai dengan state yang te
 
 
 [![Live Test](https://img.shields.io/badge/Live_Test-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://godzillacupu.github.io/Test_Digital_Breeze_Interactive/)
+[![Finished Repo](https://img.shields.io/badge/Finished_Repo-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)]([https://godzillacupu.github.io/Test_Digital_Breeze_Interactive/](https://github.com/GodzillaCupu/Test_Digital_Breeze_Interactive/tree/dev))
 
-Untuk Project Silahkan Di Download  pada bagian Release
+Untuk Project Silahkan Di Download  pada bagian Release atau pada link repository diatas :
 
 <img width="335" height="125" alt="image" src="https://github.com/user-attachments/assets/3ee1bec3-04ec-4666-b06a-cf7c735b44e0" />
+
 
 ## Authors
 
