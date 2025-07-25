@@ -16,7 +16,7 @@ MonoBehaviour:
   - ID: Idle
     AnimatorName: Idle
   - ID: Attack
-    AnimatorName: Attack
+    AnimatorName: Throw
   - ID: Die
     AnimatorName: Dead
   - ID: Running

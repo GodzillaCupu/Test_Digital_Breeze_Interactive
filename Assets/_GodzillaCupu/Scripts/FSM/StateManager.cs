@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    [SerializeField] BaseState currentState;
+    [SerializeField] private BaseState currentState;
+
+    public BaseState CurrentState { get => currentState; set => currentState = value; }
+
     public DieState _dieState = new DieState();
     public RunState _runState = new RunState();
     public IdleState _idleState = new IdleState();
@@ -12,15 +15,29 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = _idleState;
+        if(currentState == null)
+            currentState = _idleState;
+
         currentState.OnEnter(this);
     }
 
     private void Update()
     {
         if (currentState == null) return;
-
+        Debug.Log($"Current State is {currentState}");
         currentState.OnUpdate(this);
+    }
+
+    private void FixedUpdate()
+    {
+        if (currentState == null) return;
+        currentState.OnFixedUpdate(this);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if (currentState == null) return;
+        currentState.OnCollisionEnter(this, other);
     }
 
     public void ChangeState(BaseState newState)
@@ -29,11 +46,11 @@ public class StateManager : MonoBehaviour
         BaseState NextState = newState;
 
         if (previousState == null) return;
-
+        if (previousState == NextState) return;
+        
         previousState.OnExit(this);
+        NextState.OnEnter(this);
 
         currentState = NextState;
-        currentState.OnEnter(this);
-
     }
 }
